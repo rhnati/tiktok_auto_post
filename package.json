@@ -1,0 +1,19 @@
+{
+  "name": "tiktok_auto_post",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "tiktok_auto_post.js",
+  "scripts": {
+    "start": "node tiktok_auto_post.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "node-fetch": "^3.3.2",
+    "oauth": "^0.10.0",
+    "oauth-1.0a": "^2.2.6"
+  }
+}
