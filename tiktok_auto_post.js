@@ -21,7 +21,7 @@ async function getAccessToken() {
         client_key: clientKey,
         client_secret: clientSecret,
         grant_type: 'client_credentials',
-        scope: 'ttd.read ttd.write',
+        scope: 'user.info.basic',
       }),
     });
 
