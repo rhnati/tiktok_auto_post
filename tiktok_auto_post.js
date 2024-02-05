@@ -4,7 +4,7 @@ import sharp from "sharp";
 
 const clientKey = 'awtk9q11ll2kqoe1';
 const clientSecret = 'Frrdb0ZJUjCh7hXtEc9VinH1rr6ysnjk';
-const accessToken = '';
+let accessToken = '';
 
 const postedMatches = new Set();
 let matchIndex = 0;
