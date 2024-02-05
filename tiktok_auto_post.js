@@ -6,13 +6,10 @@ const clientKey = 'awtk9q11ll2kqoe1';
 const clientSecret = 'Frrdb0ZJUjCh7hXtEc9VinH1rr6ysnjk';
 const accessToken = '';
 
-const tumblrBlogIdentifier = 'sportscore-io.tumblr.com';
-
 const postedMatches = new Set();
 let matchIndex = 0;
 let autopostData;
 
-// Function to obtain access token using client credentials grant
 async function getAccessToken() {
   try {
     const response = await fetch('https://open-api.tiktok.com/oauth/client_token', {
@@ -40,7 +37,6 @@ async function getAccessToken() {
   }
 }
 
-// Function to fetch autopost settings
 async function fetchAutopost() {
   try {
     const response = await fetch('https://sportscore.io/api/v1/autopost/settings/tumblr/', {
