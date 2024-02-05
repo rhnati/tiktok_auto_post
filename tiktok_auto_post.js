@@ -12,16 +12,16 @@ let autopostData;
 
 async function getAccessToken() {
   try {
-    const response = await fetch('https://open-api.tiktok.com/oauth/client_token', {
+    const response = await fetch('https://open.tiktokapis.com/v2/oauth/token/', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Cache-Control': 'no-cache',
       },
-      body: JSON.stringify({
-        client_key: clientKey,
-        client_secret: clientSecret,
-        grant_type: 'client_credentials',
-        scope: 'user.info.basic',
+      body: new URLSearchParams({
+        'client_key': clientKey,
+        'client_secret': clientSecret,
+        'grant_type': 'client_credentials',
       }),
     });
 
@@ -39,7 +39,7 @@ async function getAccessToken() {
 
 async function fetchAutopost() {
   try {
-    const response = await fetch('https://sportscore.io/api/v1/autopost/settings/tumblr/', {
+    const response = await fetch('https://sportscore.io/api/v1/autopost/settings/tiktok/', {
       method: 'GET',
       headers: {
         "accept": "application/json",
