@@ -89,9 +89,8 @@ async function processData(matchGroups) {
 
     await fetchAutopost();
     console.log(autopostData);
-    console.log(autopostData[0].enabled);
     
-    if (autopostData[0].enabled) {
+    if (autopostData[1].enabled) {
       matchGroups.forEach((matchGroup) => {
         getMatch(matchGroup);
       });
