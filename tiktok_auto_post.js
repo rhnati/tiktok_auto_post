@@ -48,10 +48,14 @@ async function fetchData() {
       }
     );
 
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data: ${response.status} - ${response.statusText}`);
+    }
+
     const data = await response.json();
     processData(data.match_groups);
   } catch (error) {
-    console.error("Error:", error);
+    console.error("Error fetching data:", error);
   }
 }
 
@@ -64,10 +68,15 @@ async function fetchAutopost() {
         'X-API-Key': 'uqzmebqojezbivd2dmpakmj93j7gjm',
       },
     });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch autopost data: ${response.status} - ${response.statusText}`);
+    }
+
     const data = await response.json();
     autopostData = data;
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error fetching autopost data:', error);
   }
 }
 
@@ -151,7 +160,10 @@ async function postToTikTok(postText, photoLink) {
         "media_type": "PHOTO"
       }),
     });
-    console.log(response);
+
+    if (!response.ok) {
+      throw new Error(`Failed to post to TikTok: ${response.status} - ${response.statusText}`);
+    }
 
     const responseData = await response.json();
     console.log("Post successful:", responseData);
