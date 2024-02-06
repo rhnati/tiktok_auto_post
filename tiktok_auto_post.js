@@ -81,6 +81,7 @@ async function fetchAutopost() {
 }
 
 async function processData(matchGroups) {
+  console.log("Processing matchGroups:", matchGroups);
   try {
     if (!Array.isArray(matchGroups)) {
       console.error("Invalid matchGroups:", matchGroups);
@@ -101,6 +102,7 @@ async function processData(matchGroups) {
 }
 
 async function getMatch(matchGroup) {
+  console.log("Entering getMatch...");
   try {
     const competition = matchGroup.competition.name;
 
