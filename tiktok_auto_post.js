@@ -1,6 +1,4 @@
 import fetch from "node-fetch";
-import OAuth from "oauth";
-import sharp from "sharp";
 
 const clientKey = 'awtk9q11ll2kqoe1';
 const clientSecret = 'Frrdb0ZJUjCh7hXtEc9VinH1rr6ysnjk';
@@ -25,11 +23,7 @@ async function getAccessToken() {
       }),
     });
 
-    const responseBody = await response.text();
-
-    console.log('Response:', responseBody);
-
-    const data = JSON.parse(responseBody);
+    const data = await response.json();
     if (data.access_token) {
       accessToken = data.access_token;
       console.log('Access token obtained:', accessToken);
@@ -38,22 +32,6 @@ async function getAccessToken() {
     }
   } catch (error) {
     console.error('Error obtaining access token:', error);
-  }
-}
-
-async function fetchAutopost() {
-  try {
-    const response = await fetch('https://sportscore.io/api/v1/autopost/settings/tiktok/', {
-      method: 'GET',
-      headers: {
-        "accept": "application/json",
-        'X-API-Key': 'uqzmebqojezbivd2dmpakmj93j7gjm',
-      },
-    });
-    const data = await response.json();
-    autopostData = data;
-  } catch (error) {
-    console.error('Error:', error);
   }
 }
 
@@ -74,6 +52,22 @@ async function fetchData() {
     processData(data.match_groups);
   } catch (error) {
     console.error("Error:", error);
+  }
+}
+
+async function fetchAutopost() {
+  try {
+    const response = await fetch('https://sportscore.io/api/v1/autopost/settings/tiktok/', {
+      method: 'GET',
+      headers: {
+        "accept": "application/json",
+        'X-API-Key': 'uqzmebqojezbivd2dmpakmj93j7gjm',
+      },
+    });
+    const data = await response.json();
+    autopostData = data;
+  } catch (error) {
+    console.error('Error:', error);
   }
 }
 
@@ -132,48 +126,36 @@ async function getMatch(matchGroup) {
 
 async function postToTikTok(postText, photoLink) {
   try {
-    // Fetch WebP image using the photoLink
-    const webpImageResponse = await fetch(photoLink);
-    const webpImageBuffer = await webpImageResponse.arrayBuffer();
+    const response = await fetch('https://open.tiktokapis.com/v2/post/publish/content/init/', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        "post_info": {
+            "title": "funny cat",
+            "description": postText,
+            "disable_comment": true,
+            "privacy_level": "PUBLIC_TO_EVERYONE",
+            "auto_add_music": true
+        },
+        "source_info": {
+            "source": "PULL_FROM_URL",
+            "photo_cover_index": 1,
+            "photo_images": [
+                photoLink
+            ]
+        },
+        "post_mode": "DIRECT_POST",
+        "media_type": "PHOTO"
+      }),
+    });
 
-    // Convert WebP to JPEG using sharp stream
-    const jpegBuffer = await sharp(webpImageBuffer)
-      .resize(800)
-      .jpeg()
-      .toBuffer();
-
-    const oauth = new OAuth.OAuth(
-      null,
-      null,
-      consumerKey,
-      consumerSecret,
-      "1.0A",
-      null,
-      "HMAC-SHA1"
-    );
-
-    const postParams = {
-      type: "photo",
-      caption: postText,
-      data64: jpegBuffer.toString("base64"),
-    };
-
-    oauth.post(
-      `https://open.tiktokapis.com/v2/post/publish/content/init/`,
-      accessToken,
-      accessTokenSecret,
-      postParams,
-      "",
-      (error, data) => {
-        if (error) {
-          console.error("Error posting to TikTok:", error);
-        } else {
-          console.log("Post successful:", data);
-        }
-      }
-    );
+    const responseData = await response.json();
+    console.log("Post successful:", responseData);
   } catch (error) {
-    console.error("Error:", error);
+    console.error("Error posting to TikTok:", error);
   }
 }
 
