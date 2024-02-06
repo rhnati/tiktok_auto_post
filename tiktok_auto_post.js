@@ -151,6 +151,7 @@ async function postToTikTok(postText, photoLink) {
         "media_type": "PHOTO"
       }),
     });
+    console.log(response);
 
     const responseData = await response.json();
     console.log("Post successful:", responseData);
