@@ -172,7 +172,6 @@ async function postToTikTok(postText, photoLink) {
   }
 }
 
-// Obtain access token
-getAccessToken().then(fetchData);
-
 setInterval(fetchData, 60000);
+
+fetchData();
