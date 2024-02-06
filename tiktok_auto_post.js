@@ -134,6 +134,7 @@ async function getMatch(matchGroup) {
 }
 
 async function postToTikTok(postText, photoLink) {
+  console.log("HELLO");
   try {
     const response = await fetch('https://open.tiktokapis.com/v2/post/publish/content/init/', {
       method: 'POST',
@@ -172,6 +173,6 @@ async function postToTikTok(postText, photoLink) {
   }
 }
 
-setInterval(fetchData, 60000);
+getAccessToken().then(fetchData);
 
-fetchData();
+setInterval(fetchData, 60000);
