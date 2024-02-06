@@ -120,8 +120,9 @@ async function getMatch(matchGroup) {
 
         // Post to TikTok after 1 minute interval
         setTimeout(() => {
+          console.log("Scheduling postToTikTok...");
           postToTikTok(postContent, photoLink);
-        }, matchIndex * 60000); // Adjusted interval based on matchIndex
+        }, matchIndex * 60000);        
 
         // Add matchId to the set to avoid reposting
         postedMatches.add(matchId);
