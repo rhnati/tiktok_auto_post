@@ -81,7 +81,6 @@ async function fetchAutopost() {
 }
 
 async function processData(matchGroups) {
-  console.log("Processing matchGroups:", matchGroups);
   try {
     if (!Array.isArray(matchGroups)) {
       console.error("Invalid matchGroups:", matchGroups);
@@ -90,6 +89,7 @@ async function processData(matchGroups) {
 
     await fetchAutopost();
     console.log(autopostData);
+    console.log(autopostData[0].enabled);
     
     if (autopostData[0].enabled) {
       matchGroups.forEach((matchGroup) => {
@@ -102,7 +102,6 @@ async function processData(matchGroups) {
 }
 
 async function getMatch(matchGroup) {
-  console.log("Entering getMatch...");
   try {
     const competition = matchGroup.competition.name;
 
@@ -122,9 +121,8 @@ async function getMatch(matchGroup) {
 
         // Post to TikTok after 1 minute interval
         setTimeout(() => {
-          console.log("Scheduling postToTikTok...");
           postToTikTok(postContent, photoLink);
-        }, matchIndex * 60000);        
+        }, matchIndex * 60000); // Adjusted interval based on matchIndex
 
         // Add matchId to the set to avoid reposting
         postedMatches.add(matchId);
