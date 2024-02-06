@@ -134,9 +134,9 @@ async function postToTikTok(postText, photoLink) {
       },
       body: JSON.stringify({
         "post_info": {
-            "title": "funny cat",
+            "title": "🎌Match Started!🎌",
             "description": postText,
-            "disable_comment": true,
+            "disable_comment": false,
             "privacy_level": "PUBLIC_TO_EVERYONE",
             "auto_add_music": true
         },
