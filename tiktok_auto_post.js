@@ -160,11 +160,11 @@ async function postToTikTok(postText, photoLink) {
         "media_type": "PHOTO"
       }),
     });
+    console.log(response);
 
     if (!response.ok) {
       throw new Error(`Failed to post to TikTok: ${response.status} - ${response.statusText}`);
     }
-    console.log(response);
 
     const responseData = await response.json();
     console.log("Post successful:", responseData);
