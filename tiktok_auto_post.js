@@ -23,8 +23,8 @@ async function getAccessToken() {
       }),
     });
 
-    console.log(response);
     const data = await response.json();
+    console.log(data);
     if (data.access_token) {
       accessToken = data.access_token;
       console.log('Access token obtained:', accessToken);
