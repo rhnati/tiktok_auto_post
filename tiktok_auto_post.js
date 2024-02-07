@@ -19,7 +19,9 @@ async function getAccessToken() {
       body: new URLSearchParams({
         'client_key': clientKey,
         'client_secret': clientSecret,
-        'grant_type': 'client_credentials',
+        'code': 'CODE',
+        'grant_type': 'authorization_code',
+        'redirect_uri': 'https://sportscore.io/'
       }),
     });
 
