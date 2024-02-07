@@ -134,7 +134,6 @@ async function getMatch(matchGroup) {
 }
 
 async function postToTikTok(postText, photoLink) {
-  console.log("HELLO");
   try {
     const response = await fetch('https://open.tiktokapis.com/v2/post/publish/content/init/', {
       method: 'POST',
@@ -165,6 +164,7 @@ async function postToTikTok(postText, photoLink) {
     if (!response.ok) {
       throw new Error(`Failed to post to TikTok: ${response.status} - ${response.statusText}`);
     }
+    console.log(response);
 
     const responseData = await response.json();
     console.log("Post successful:", responseData);
