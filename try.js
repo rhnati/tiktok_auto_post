@@ -1,7 +1,7 @@
-const http = require('http');
-const querystring = require('querystring');
-const axios = require('axios');
-const { URL } = require('url');
+import http from 'http';
+import querystring from 'querystring';
+import axios from 'axios';
+import { URL } from 'url';
 
 const server = http.createServer((req, res) => {
     const { method, url } = req;
