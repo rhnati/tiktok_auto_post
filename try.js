@@ -1,8 +1,9 @@
-const express = require('express');
+
+import express from 'express';
 const app = express();
-const fetch = require('node-fetch');
-const cookieParser = require('cookie-parser');
-const cors = require('cors');
+import fetch from 'node-fetch';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 app.use(cookieParser());
 app.use(cors());
