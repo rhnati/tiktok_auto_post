@@ -1,4 +1,3 @@
-
 import express from 'express';
 const app = express();
 import fetch from 'node-fetch';
@@ -18,7 +17,7 @@ app.get('/oauth', (req, res) => {
     let url = 'https://www.tiktok.com/v2/auth/authorize/';
 
     // the following params need to be in `application/x-www-form-urlencoded` format.
-    url += '?client_key={CLIENT_KEY}';
+    url += '?client_key=awtk9q11ll2kqoe1';
     url += '&scope=user.info.basic';
     url += '&response_type=code';
     url += '&redirect_uri=https://sportscore.io/';
