@@ -19,14 +19,11 @@ async function getAccessToken() {
       body: new URLSearchParams({
         'client_key': clientKey,
         'client_secret': clientSecret,
-        'code': 'CODE',
-        'grant_type': 'authorization_code',
-        'redirect_uri': 'https://sportscore.io/'
+        'grant_type': 'client_credentials',
       }),
     });
 
     const data = await response.json();
-    console.log(data);
     if (data.access_token) {
       accessToken = data.access_token;
       console.log('Access token obtained:', accessToken);
