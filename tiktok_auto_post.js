@@ -163,7 +163,7 @@ async function postToTikTok(postText, photoLink) {
     });
 
     if (!response.ok) {
-      throw new Error(`Failed to post to TikTok: ${response.status} - ${response.statusText}`);
+      throw new Error(`Failed to post to TikTok: ${response} - ${response.statusText}`);
     }
 
     const responseData = await response.json();
