@@ -134,6 +134,7 @@ async function getMatch(matchGroup) {
 }
 
 async function postToTikTok(postText, photoLink) {
+  let accessToken = "act.6zL3asprBntsIbvpRucDB2Qtb8frioyrLUsQuLpvcLtI63nFERoshiiF7Gc3!6258.va";
   try {
     const response = await fetch('https://open.tiktokapis.com/v2/post/publish/content/init/', {
       method: 'POST',
@@ -172,6 +173,7 @@ async function postToTikTok(postText, photoLink) {
   }
 }
 
-getAccessToken().then(fetchData);
+// getAccessToken().then(fetchData);
+fetchData();
 
 setInterval(fetchData, 60000);
